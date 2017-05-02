@@ -1,0 +1,52 @@
+---
+title: "Global Terrorism"
+---
+
+
+```{r, include=FALSE}
+library(dplyr) 
+library(tm)
+library(tidytext)
+library(xlsx)
+library(wordcloud)
+library(plotly)
+library(ggthemes)
+library(ggplot2) 
+library(leaflet)
+library(readxl)
+library(tmap)
+library(ggmap)
+library(lubridate)
+library(geosphere)
+
+library(tidyverse)
+library(tmap)
+library(maptools)
+library(maps)
+library(dygraphs)
+
+load("motive_tidy.rda")
+load('GTD.RData')
+
+
+```
+
+##### Pedro Perez, Donggwan Kim. Tiantian Yin, Suer Hu
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', fig.width=10}
+mapWorld <- borders("world", colour="white", fill="grey20")
+
+
+mp <- ggplot() + mapWorld
+gtd2 <- GTD %>%
+  filter(iyear >= 2010)
+longitude <- gtd2$longitude
+latitude <- gtd2$latitude
+
+map <- mp + geom_point(aes(x= longitude, y= latitude), color="orange", size=0.0001) + stat_density2d(aes(x = longitude, y = latitude, fill = ..level.., alpha = ..level..), data = gtd2, geom = 'polygon', bins = 12) + scale_fill_gradient(low = "grey", high = "red") + scale_alpha(range = c(0, 1)) + theme(axis.ticks.x = element_blank(), axis.ticks.y = element_blank(), axis.text.x = element_blank(), axis.text.y = element_blank(), panel.grid = element_blank()) + ggtitle("Global Terrorism, 2010-2015") + theme(plot.title = element_text(size = 18, hjust = 0.45), legend.position = "none") + labs(x = "", y = "")
+map
+
+
+```
+
+

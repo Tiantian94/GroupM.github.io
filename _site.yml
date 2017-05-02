@@ -1,0 +1,12 @@
+name: "my-website"
+navbar:
+  title: "Global Terrorism"
+  left:
+    - text: "Overview"
+      href: index.html
+    - text: "Patterns over Time"
+      href: Patternsovertime.html
+    - text: "Terrorist Organizations"
+      href: TerroristOrganization.html
+    - text: "Text Analysis on Motives"
+      href: TextAnalysisonMotives.html
